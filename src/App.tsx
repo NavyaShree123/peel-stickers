@@ -1,11 +1,6 @@
 import { StickerPeel } from './components/StickerPeel'
+import { stickers } from './data/stickers'
 import './App.css'
-
-const stickers = [
-  { label: 'Sparkle', emoji: '✨', color: '#fbbf24' },
-  { label: 'Rocket', emoji: '🚀', color: '#60a5fa' },
-  { label: 'Heart', emoji: '💜', color: '#c084fc' },
-]
 
 function App() {
   return (
@@ -21,7 +16,7 @@ function App() {
 
       <section className="app__grid" aria-label="Sticker sheet">
         {stickers.map((sticker) => (
-          <StickerPeel key={sticker.label} {...sticker} />
+          <StickerPeel key={sticker.id} {...sticker} />
         ))}
       </section>
     </main>

@@ -5,9 +5,10 @@ type StickerPeelProps = {
   label: string
   emoji: string
   color: string
+  gif?: string
 }
 
-export function StickerPeel({ label, emoji, color }: StickerPeelProps) {
+export function StickerPeel({ label, emoji, color, gif }: StickerPeelProps) {
   const [peelAmount, setPeelAmount] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const startY = useRef(0)
@@ -47,6 +48,7 @@ export function StickerPeel({ label, emoji, color }: StickerPeelProps) {
   const reset = useCallback(() => setPeelAmount(0), [])
 
   const peelRadians = (peelAmount / 100) * 1.15
+  const displayLabel = `${emoji} ${label}`
 
   return (
     <article className="sticker-card" style={{ '--sticker-color': color } as React.CSSProperties}>
@@ -63,13 +65,17 @@ export function StickerPeel({ label, emoji, color }: StickerPeelProps) {
         onPointerCancel={finishDrag}
         role="button"
         tabIndex={0}
-        aria-label={`Peel ${label} sticker`}
+        aria-label={`Peel ${displayLabel} sticker`}
         data-testid="sticker"
       >
-        <span className="sticker__emoji" aria-hidden="true">
-          {emoji}
-        </span>
-        <span className="sticker__label">{label}</span>
+        {gif ? (
+          <img className="sticker__gif" src={gif} alt="" aria-hidden="true" />
+        ) : (
+          <span className="sticker__emoji" aria-hidden="true">
+            {emoji}
+          </span>
+        )}
+        <span className="sticker__label">{displayLabel}</span>
         <span className="sticker__hint">Drag up to peel</span>
       </div>
       {peelAmount >= 100 ? (

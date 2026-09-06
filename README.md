@@ -11,6 +11,32 @@ npm run dev
 
 Open http://localhost:5173 and drag a sticker upward to peel it off the sheet.
 
+## Add or change stickers
+
+Stickers live in `src/data/stickers.ts`. Each entry supports:
+
+| Field | Description |
+| --- | --- |
+| `id` | Unique key (used by React) |
+| `emoji` | Category emoji shown in the label |
+| `label` | Category name |
+| `gif` | Path to a GIF in `public/stickers/` |
+| `color` | Sticker background color |
+
+Example:
+
+```ts
+{
+  id: 'memes',
+  emoji: '🔥',
+  label: 'Memes',
+  gif: '/stickers/memes.gif',
+  color: '#fca5a5',
+}
+```
+
+Drop new GIF files into `public/stickers/`, add an object to the `stickers` array, and save.
+
 ## Scripts
 
 | Command | Description |

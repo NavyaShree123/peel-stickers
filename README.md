@@ -1,6 +1,6 @@
-# Peel Stickers
+# Stickers
 
-Interactive sticker peel demo built with Vite and React.
+Sticker gallery built with Vite and React. Browse emoji and GIF stickers by category.
 
 ## Development
 
@@ -9,7 +9,7 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:5173 and drag a sticker upward to peel it off the sheet.
+Open http://localhost:5173 to browse the sticker categories.
 
 ## Add or change stickers
 

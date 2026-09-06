@@ -34,10 +34,28 @@
   font-size: 1.05rem;
 }
 
-.app__grid {
+.app__categories {
+  display: grid;
+  gap: 2.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.category__header {
+  margin-bottom: 1rem;
+}
+
+.category__title {
+  margin: 0;
+  font-size: 1.35rem;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
-  max-width: 960px;
-  margin: 0 auto;
 }

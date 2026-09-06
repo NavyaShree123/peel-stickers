@@ -13,29 +13,23 @@ Open http://localhost:5173 and drag a sticker upward to peel it off the sheet.
 
 ## Add or change stickers
 
-Stickers live in `src/data/stickers.ts`. Each entry supports:
-
-| Field | Description |
-| --- | --- |
-| `id` | Unique key (used by React) |
-| `emoji` | Category emoji shown in the label |
-| `label` | Category name |
-| `gif` | Path to a GIF in `public/stickers/` |
-| `color` | Sticker background color |
-
-Example:
+Stickers are grouped by category in `src/data/stickers.ts`. Each category has a heading plus a mix of emoji stickers and one GIF sticker.
 
 ```ts
 {
-  id: 'memes',
-  emoji: '🔥',
-  label: 'Memes',
-  gif: '/stickers/memes.gif',
-  color: '#fca5a5',
+  id: 'funny-reaction',
+  emoji: '😂',
+  name: 'Funny/reaction',
+  stickers: [
+    { id: 'lol', emoji: '😂', label: 'LOL', color: '#fef08a' },          // emoji sticker
+    { id: 'laughing-gif', label: 'Laughing GIF', gif: '/stickers/funny-reaction.gif', color: '#facc15' }, // GIF sticker
+  ],
 }
 ```
 
-Drop new GIF files into `public/stickers/`, add an object to the `stickers` array, and save.
+- **Emoji sticker:** set `emoji` + `label` (no `gif`)
+- **GIF sticker:** set `gif` + `label` (no `emoji`)
+- Drop GIF files into `public/stickers/`
 
 ## Scripts
 

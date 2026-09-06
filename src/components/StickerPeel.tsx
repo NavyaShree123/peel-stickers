@@ -3,8 +3,8 @@ import './StickerPeel.css'
 
 type StickerPeelProps = {
   label: string
-  emoji: string
   color: string
+  emoji?: string
   gif?: string
 }
 
@@ -48,13 +48,14 @@ export function StickerPeel({ label, emoji, color, gif }: StickerPeelProps) {
   const reset = useCallback(() => setPeelAmount(0), [])
 
   const peelRadians = (peelAmount / 100) * 1.15
-  const displayLabel = `${emoji} ${label}`
+  const displayLabel = emoji ? `${emoji} ${label}` : label
+  const isGifSticker = Boolean(gif)
 
   return (
     <article className="sticker-card" style={{ '--sticker-color': color } as React.CSSProperties}>
       <div className="sticker__surface" aria-hidden="true" />
       <div
-        className={`sticker ${peelAmount >= 100 ? 'sticker--removed' : ''}`}
+        className={`sticker ${isGifSticker ? 'sticker--gif' : ''} ${peelAmount >= 100 ? 'sticker--removed' : ''}`}
         style={{
           transform: `rotateX(${peelRadians}rad)`,
           opacity: peelAmount >= 100 ? 0 : 1,
@@ -75,7 +76,7 @@ export function StickerPeel({ label, emoji, color, gif }: StickerPeelProps) {
             {emoji}
           </span>
         )}
-        <span className="sticker__label">{displayLabel}</span>
+        <span className="sticker__label">{label}</span>
         <span className="sticker__hint">Drag up to peel</span>
       </div>
       {peelAmount >= 100 ? (

@@ -1,17 +1,6 @@
-export type StickerItem = {
-  id: string
-  label: string
-  color: string
-  emoji?: string
-  gif?: string
-}
+import type { StickerCategory } from '../types/sticker'
 
-export type StickerCategory = {
-  id: string
-  emoji: string
-  name: string
-  stickers: StickerItem[]
-}
+export type { StickerCategory, StickerItem } from '../types/sticker'
 
 export const stickerCategories: StickerCategory[] = [
   {

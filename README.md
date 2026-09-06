@@ -11,7 +11,18 @@ npm run dev
 
 Open http://localhost:5173 to browse the sticker categories.
 
-## Add or change stickers
+## Upload your own stickers
+
+Use the **Upload a sticker** form at the top of the app:
+
+1. Pick a category
+2. Enter a name
+3. Choose a PNG, JPG, WebP, or GIF (max 1 MB)
+4. Click **Add sticker**
+
+Uploads are saved in your browser's local storage, so they persist on refresh in the same browser. Custom stickers include a **Remove** button.
+
+## Add built-in stickers in code
 
 Stickers are grouped by category in `src/data/stickers.ts`. Each category has a heading plus a mix of emoji stickers and one GIF sticker.
 

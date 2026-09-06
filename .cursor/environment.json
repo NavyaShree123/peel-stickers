@@ -1,0 +1,18 @@
+{
+  "name": "Peel Stickers",
+  "install": "npm ci",
+  "start": "bash .cursor/scripts/start-dev.sh",
+  "ports": [
+    {
+      "name": "vite-dev",
+      "port": 5173
+    }
+  ],
+  "terminals": [
+    {
+      "name": "dev-server",
+      "command": "npm run dev -- --host 0.0.0.0 --port 5173",
+      "description": "Vite development server for the peel stickers demo"
+    }
+  ]
+}

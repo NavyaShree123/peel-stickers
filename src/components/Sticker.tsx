@@ -13,8 +13,8 @@ export function Sticker({ label, emoji, color, gif }: StickerProps) {
 
   return (
     <article
-      className={`sticker-card ${isGifSticker ? 'sticker-card--gif' : ''}`}
-      style={{ '--sticker-color': color } as React.CSSProperties}
+      className={`sticker-card ${isGifSticker ? 'sticker-card--gif' : 'sticker-card--emoji'}`}
+      style={isGifSticker ? ({ '--sticker-color': color } as React.CSSProperties) : undefined}
       aria-label={ariaLabel}
       data-testid="sticker"
     >

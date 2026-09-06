@@ -50,6 +50,7 @@ export function StickerPeel({ label, emoji, color }: StickerPeelProps) {
 
   return (
     <article className="sticker-card" style={{ '--sticker-color': color } as React.CSSProperties}>
+      <div className="sticker__surface" aria-hidden="true" />
       <div
         className={`sticker ${peelAmount >= 100 ? 'sticker--removed' : ''}`}
         style={{
@@ -71,7 +72,6 @@ export function StickerPeel({ label, emoji, color }: StickerPeelProps) {
         <span className="sticker__label">{label}</span>
         <span className="sticker__hint">Drag up to peel</span>
       </div>
-      <div className="sticker__surface" aria-hidden="true" />
       {peelAmount >= 100 ? (
         <button type="button" className="sticker__reset" onClick={reset}>
           Place sticker again

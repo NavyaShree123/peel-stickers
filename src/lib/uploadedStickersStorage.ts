@@ -15,7 +15,11 @@ export function readUploadedStickers(): UploadedStickerRecord[] {
 }
 
 export function saveUploadedStickers(stickers: UploadedStickerRecord[]) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(stickers))
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(stickers))
+  } catch {
+    throw new Error('Could not save sticker. The file may be too large for browser storage.')
+  }
 }
 
 export function fileToDataUrl(file: File): Promise<string> {
@@ -33,9 +37,20 @@ export function fileToDataUrl(file: File): Promise<string> {
   })
 }
 
+const ALLOWED_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.webp', '.gif'])
+
+function fileExtension(name: string) {
+  const dotIndex = name.lastIndexOf('.')
+  return dotIndex === -1 ? '' : name.slice(dotIndex).toLowerCase()
+}
+
 export function validateUploadFile(file: File): string | null {
-  if (!file.type.startsWith('image/')) {
-    return 'Choose an image or GIF file.'
+  const extension = fileExtension(file.name)
+  const hasAllowedType = file.type.startsWith('image/')
+  const hasAllowedExtension = ALLOWED_EXTENSIONS.has(extension)
+
+  if (!hasAllowedType && !hasAllowedExtension) {
+    return 'Choose a PNG, JPG, WebP, or GIF file.'
   }
   if (file.size > MAX_FILE_SIZE_BYTES) {
     return 'File must be 1 MB or smaller.'
@@ -86,12 +101,23 @@ export async function addUploadedSticker(input: {
   }
 
   const dataUrl = await fileToDataUrl(input.file)
+  const mimeType =
+    input.file.type ||
+    ({
+      '.png': 'image/png',
+      '.jpg': 'image/jpeg',
+      '.jpeg': 'image/jpeg',
+      '.webp': 'image/webp',
+      '.gif': 'image/gif',
+    }[fileExtension(input.file.name)] ??
+      'application/octet-stream')
+
   const record: UploadedStickerRecord = {
     id: `upload-${crypto.randomUUID()}`,
     categoryId: input.categoryId,
     label: trimmedLabel,
     dataUrl,
-    mimeType: input.file.type,
+    mimeType,
     createdAt: Date.now(),
   }
 

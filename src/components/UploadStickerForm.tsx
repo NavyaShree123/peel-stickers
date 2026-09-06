@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import type { StickerCategory } from '../types/sticker'
 import './UploadStickerForm.css'
 
@@ -8,22 +8,39 @@ type UploadStickerFormProps = {
 }
 
 export function UploadStickerForm({ categories, onUpload }: UploadStickerFormProps) {
+  const formRef = useRef<HTMLFormElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const [categoryId, setCategoryId] = useState(categories[0]?.id ?? '')
   const [label, setLabel] = useState('')
   const [file, setFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const clearPreview = () => {
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl)
+    }
+    setPreviewUrl(null)
+  }
+
+  const resetForm = () => {
+    setLabel('')
+    setFile(null)
+    clearPreview()
+    formRef.current?.reset()
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const nextFile = event.target.files?.[0] ?? null
     setFile(nextFile)
     setError(null)
-
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl)
-    }
-
+    setSuccess(null)
+    clearPreview()
     setPreviewUrl(nextFile ? URL.createObjectURL(nextFile) : null)
   }
 
@@ -36,16 +53,13 @@ export function UploadStickerForm({ categories, onUpload }: UploadStickerFormPro
 
     setIsSubmitting(true)
     setError(null)
+    setSuccess(null)
 
     try {
+      const trimmedLabel = label.trim()
       await onUpload({ categoryId, label, file })
-      setLabel('')
-      setFile(null)
-      if (previewUrl) {
-        URL.revokeObjectURL(previewUrl)
-      }
-      setPreviewUrl(null)
-      event.currentTarget.reset()
+      resetForm()
+      setSuccess(`Added "${trimmedLabel}" to the gallery.`)
     } catch (uploadError) {
       setError(uploadError instanceof Error ? uploadError.message : 'Upload failed.')
     } finally {
@@ -60,7 +74,7 @@ export function UploadStickerForm({ categories, onUpload }: UploadStickerFormPro
         <p>Add a PNG, JPG, WebP, or GIF to any category. Uploads are saved in this browser.</p>
       </div>
 
-      <form className="upload__form" onSubmit={handleSubmit}>
+      <form ref={formRef} className="upload__form" onSubmit={handleSubmit}>
         <label className="upload__field">
           <span>Category</span>
           <select
@@ -85,16 +99,19 @@ export function UploadStickerForm({ categories, onUpload }: UploadStickerFormPro
             placeholder="My sticker"
             maxLength={40}
             disabled={isSubmitting}
+            required
           />
         </label>
 
         <label className="upload__field">
           <span>Image or GIF</span>
           <input
+            ref={fileInputRef}
             type="file"
-            accept="image/png,image/jpeg,image/webp,image/gif"
+            accept="image/png,image/jpeg,image/jpg,image/webp,image/gif,.png,.jpg,.jpeg,.webp,.gif"
             onChange={handleFileChange}
             disabled={isSubmitting}
+            required
           />
         </label>
 
@@ -105,6 +122,7 @@ export function UploadStickerForm({ categories, onUpload }: UploadStickerFormPro
         ) : null}
 
         {error ? <p className="upload__error">{error}</p> : null}
+        {success ? <p className="upload__success">{success}</p> : null}
 
         <button type="submit" className="upload__submit" disabled={isSubmitting}>
           {isSubmitting ? 'Uploading…' : 'Add sticker'}

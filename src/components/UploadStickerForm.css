@@ -60,6 +60,12 @@
   font-size: 0.9rem;
 }
 
+.upload__success {
+  margin: 0;
+  color: #15803d;
+  font-size: 0.9rem;
+}
+
 .upload__submit {
   justify-self: start;
   border: none;

@@ -19,7 +19,7 @@ describe('uploadedStickersStorage', () => {
     const text = new File(['x'], 'notes.txt', { type: 'text/plain' })
 
     expect(validateUploadFile(png)).toBeNull()
-    expect(validateUploadFile(text)).toBe('Choose an image or GIF file.')
+    expect(validateUploadFile(text)).toBe('Choose a PNG, JPG, WebP, or GIF file.')
   })
 
   it('stores and merges uploaded stickers into categories', async () => {

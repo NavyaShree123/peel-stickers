@@ -7,17 +7,11 @@ type StickerProps = {
   gif?: string
 }
 
-export function Sticker({ label, emoji, color, gif }: StickerProps) {
-  const isGifSticker = Boolean(gif)
+export function Sticker({ label, emoji, gif }: StickerProps) {
   const ariaLabel = emoji ? `${emoji} ${label}` : label
 
   return (
-    <article
-      className={`sticker-card ${isGifSticker ? 'sticker-card--gif' : 'sticker-card--emoji'}`}
-      style={isGifSticker ? ({ '--sticker-color': color } as React.CSSProperties) : undefined}
-      aria-label={ariaLabel}
-      data-testid="sticker"
-    >
+    <article className="sticker-card" aria-label={ariaLabel} data-testid="sticker">
       {gif ? (
         <img className="sticker__gif" src={gif} alt={label} />
       ) : (

@@ -1,6 +1,6 @@
-# Stickers
+# Peel.ly
 
-Sticker gallery built with Vite and React. Browse emoji and GIF stickers by category.
+Sticker.ly-style sticker maker built with Vite and React. Browse community packs, follow creators, make a pack from your photos, and add stickers to a WhatsApp-style library.
 
 ## Development
 
@@ -9,38 +9,20 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:5173 to browse the sticker categories.
+Open http://localhost:5173.
 
-## Upload your own stickers
+## What you can do
 
-Use the **Upload a sticker** form at the top of the app:
+- **Home** — For You, Sticker, and Status feeds of community packs
+- **Search** — Find packs by name, creator, or sticker label
+- **Create (+)** — Name a pack, upload PNG/JPG/WebP/GIF files, Auto Cut, caption, rotate/scale, then publish (up to 30 stickers)
+- **Pack page** — Preview stickers, Follow, Share link, Add to WhatsApp
+- **My Stickers** — Packs you created and packs you added
+- **Profile** — Name, handle, and bio saved in this browser
 
-1. Pick a category
-2. Enter a name
-3. Choose a PNG, JPG, WebP, or GIF (max 1 MB)
-4. Click **Add sticker**
+Uploads and library state stay in local storage on this device. Add to WhatsApp is a local demo action (it does not talk to the WhatsApp API).
 
-Uploads are saved in your browser's local storage, so they persist on refresh in the same browser. Custom stickers include a **Remove** button.
-
-## Add built-in stickers in code
-
-Stickers are grouped by category in `src/data/stickers.ts`. Each category has a heading plus a mix of emoji stickers and one GIF sticker.
-
-```ts
-{
-  id: 'funny-reaction',
-  emoji: '😂',
-  name: 'Funny/reaction',
-  stickers: [
-    { id: 'lol', emoji: '😂', label: 'LOL', color: '#fef08a' },          // emoji sticker
-    { id: 'laughing-gif', label: 'Laughing GIF', gif: '/stickers/funny-reaction.gif', color: '#facc15' }, // GIF sticker
-  ],
-}
-```
-
-- **Emoji sticker:** set `emoji` + `label` (no `gif`)
-- **GIF sticker:** set `gif` + `label` (no `emoji`)
-- Drop GIF files into `public/stickers/`
+Built-in GIF and emoji stickers live in `src/data/stickers.ts` and `public/stickers/`.
 
 ## Scripts
 
@@ -48,9 +30,9 @@ Stickers are grouped by category in `src/data/stickers.ts`. Each category has a 
 | --- | --- |
 | `npm run dev` | Start the Vite dev server |
 | `npm run build` | Type-check and build for production |
-| `npm run preview` | Preview the production build |
 | `npm run lint` | Run Oxlint |
 | `npm run test` | Run Vitest unit tests |
+| `npm run preview` | Preview the production build |
 
 ## Cloud Agent environment
 

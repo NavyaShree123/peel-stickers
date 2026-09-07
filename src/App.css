@@ -1,61 +1,96 @@
-.app {
+.phone {
   min-height: 100svh;
-  padding: 2.5rem 1.5rem 3rem;
-  background:
-    radial-gradient(circle at top, rgba(96, 165, 250, 0.18), transparent 45%),
-    linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
-}
-
-.app__header {
-  max-width: 42rem;
-  margin: 0 auto 2.5rem;
-  text-align: center;
-}
-
-.app__eyebrow {
-  margin: 0 0 0.5rem;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #6366f1;
-}
-
-.app__header h1 {
-  margin: 0 0 0.75rem;
-  font-size: clamp(2.5rem, 6vw, 3.75rem);
-  line-height: 1;
-  color: #0f172a;
-}
-
-.app__lede {
-  margin: 0;
-  color: #475569;
-  font-size: 1.05rem;
-}
-
-.app__categories {
-  display: grid;
-  gap: 2.5rem;
-  max-width: 960px;
+  max-width: 430px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 0 40px rgba(15, 23, 42, 0.08);
 }
 
-.category__header {
-  margin-bottom: 1rem;
+.phone__header {
+  padding: 0.9rem 1rem 0.4rem;
 }
 
-.category__title {
-  margin: 0;
-  font-size: 1.35rem;
-  color: #0f172a;
+.brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
-.category__grid {
+.brand strong {
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+}
+
+.brand__mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px 7px 14px 7px;
+  background: linear-gradient(135deg, #7cacfc, #1c74fc);
+  box-shadow: 3px 3px 0 #dbeafe;
+}
+
+.phone__header p {
+  margin: 0.15rem 0 0;
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.phone__body {
+  flex: 1;
+  padding: 0.4rem 0.9rem 1rem;
+}
+
+.wa-add {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 0.8rem;
+  background: #25d366;
+  color: #fff;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.wa-add--added {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 5.5rem;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #fff;
+  font-size: 0.85rem;
+  z-index: 20;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  place-items: center;
+  align-content: center;
+  gap: 1rem;
+  background: rgba(15, 23, 42, 0.55);
+  z-index: 15;
+}
+
+.lightbox button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  background: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
 }

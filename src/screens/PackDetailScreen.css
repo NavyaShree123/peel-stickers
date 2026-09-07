@@ -1,0 +1,65 @@
+.pack-detail__top,
+.pack-detail__author {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.pack-detail__top {
+  margin-bottom: 1rem;
+}
+
+.pack-detail__top button,
+.pack-detail__author button,
+.pack-detail__delete {
+  border: none;
+  background: #f1f5f9;
+  color: #0f172a;
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pack-detail__hero h1 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.pack-detail__hero p {
+  margin: 0.25rem 0 0.8rem;
+  color: #64748b;
+}
+
+.pack-detail__author button.is-following {
+  background: #dbeafe;
+  color: #1c74fc;
+}
+
+.pack-detail__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.35rem;
+  margin: 1.25rem 0 1.5rem;
+  padding: 0.6rem;
+  border-radius: 20px;
+  background: #f8fafc;
+}
+
+.pack-detail__cta {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.wa-add--lg {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+}
+
+.pack-detail__delete {
+  background: #fee2e2;
+  color: #b91c1c;
+}

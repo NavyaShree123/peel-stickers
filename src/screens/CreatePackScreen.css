@@ -1,0 +1,133 @@
+.create__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.create__top button {
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-weight: 700;
+  color: #1c74fc;
+  cursor: pointer;
+}
+
+.create__save:disabled {
+  opacity: 0.6;
+}
+
+.create__field,
+.create__range {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.create__field input,
+.create__field select {
+  font: inherit;
+  font-weight: 400;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+}
+
+.create__private,
+.create__upload {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.4rem 0 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.create__upload {
+  display: grid;
+}
+
+.create__error {
+  color: #dc2626;
+}
+
+.editor__canvas {
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+  margin-bottom: 1rem;
+  border-radius: 24px;
+  background:
+    linear-gradient(45deg, #edf2f7 25%, transparent 25%) 0 0 / 18px 18px,
+    linear-gradient(45deg, transparent 75%, #edf2f7 75%) 0 0 / 18px 18px,
+    linear-gradient(45deg, transparent 75%, #edf2f7 75%) 9px 9px / 18px 18px,
+    linear-gradient(45deg, #edf2f7 25%, #fff 25%) 9px 9px / 18px 18px;
+}
+
+.editor__sticker {
+  position: relative;
+  width: 180px;
+  height: 180px;
+}
+
+.editor__sticker img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.editor__sticker.is-cut img {
+  filter: drop-shadow(0 10px 12px rgba(15, 23, 42, 0.3));
+  mask-image: radial-gradient(ellipse 70% 78% at 50% 48%, #000 64%, transparent 65%);
+}
+
+.editor__sticker span {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-weight: 800;
+  text-shadow:
+    -1px -1px 0 #111,
+    1px -1px 0 #111,
+    -1px 1px 0 #111,
+    1px 1px 0 #111;
+}
+
+.create__tray {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.4rem 0 1rem;
+}
+
+.create__tray button {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+.create__tray button.is-active {
+  border-color: #1c74fc;
+}
+
+.create__tray img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.create__tray p {
+  color: #64748b;
+}

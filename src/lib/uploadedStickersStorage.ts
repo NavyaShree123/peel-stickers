@@ -65,6 +65,10 @@ export function uploadedRecordToStickerItem(record: UploadedStickerRecord): Stic
     label: record.label,
     color: '#e2e8f0',
     isCustom: true,
+    caption: record.caption,
+    rotation: record.rotation,
+    scale: record.scale,
+    autoCut: record.autoCut,
     ...(isGif ? { gif: record.dataUrl } : { image: record.dataUrl }),
   }
 }
@@ -89,6 +93,10 @@ export async function addUploadedSticker(input: {
   categoryId: string
   label: string
   file: File
+  caption?: string
+  rotation?: number
+  scale?: number
+  autoCut?: boolean
 }): Promise<UploadedStickerRecord> {
   const validationError = validateUploadFile(input.file)
   if (validationError) {
@@ -119,6 +127,10 @@ export async function addUploadedSticker(input: {
     dataUrl,
     mimeType,
     createdAt: Date.now(),
+    caption: input.caption,
+    rotation: input.rotation,
+    scale: input.scale,
+    autoCut: input.autoCut,
   }
 
   const next = [...readUploadedStickers(), record]
